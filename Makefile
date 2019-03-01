@@ -7,6 +7,7 @@ packages:
 
 .PHONY: configure
 configure:
+	npm install -g @adonisjs/cli
 	adonis key:generate
 	adonis migration:run
 
