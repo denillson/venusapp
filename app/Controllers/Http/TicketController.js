@@ -5,6 +5,7 @@ const Ticket = use("App/Models/Ticket");
 class TicketController {
   async index({ request }) {
     const currentPage = request.all();
+
     return Ticket.query()
       .with("user")
       .paginate(currentPage.page, 10);
