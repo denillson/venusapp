@@ -11,6 +11,10 @@ class TicketSchema extends Schema {
         .string("title", 80)
         .notNullable()
         .unique();
+      table
+        .text("slug", 90)
+        .notNullable()
+        .unique();
       table.text("content").notNullable();
       table
         .boolean("status")
