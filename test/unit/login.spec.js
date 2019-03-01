@@ -1,13 +1,12 @@
-'use strict'
+"use strict";
 
-const { test, trait } = use('Test/Suite')('Login')
+const { test, trait } = use("Test/Suite")("Login");
 const User = use("App/Models/User");
 
 trait("Test/ApiClient");
 trait("DatabaseTransactions");
 
-
-test('Authentication => Login', async ({ client }) => {
+test("Authentication => Login", async ({ client }) => {
   const payload = {
     username: "spiderman",
     email: "spiderman@marvel.com",
@@ -21,11 +20,9 @@ test('Authentication => Login', async ({ client }) => {
     .send(payload)
     .end();
 
-    console.log(response);
   response.assertStatus(200);
-  
-  // response.assertJSONSubset({
-  //   "token": "hancha8us"
-  // })
-
-})
+  response.assertJSONSubset({
+    refreshToken: null,
+    type: "bearer"
+  });
+});
