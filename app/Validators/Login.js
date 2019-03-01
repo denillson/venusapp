@@ -1,28 +1,28 @@
-'use strict'
+"use strict";
 
 class Login {
-  get sanitizationRules () {
+  get sanitizationRules() {
     return {
-      email: 'normalize_email'
-    }
-  }
-  
-  get rules () {
-    return {
-      username: 'required',
-      email: 'required|email',
-      password: 'required'
-    }
+      email: "normalize_email"
+    };
   }
 
-  get messages () {
+  get rules() {
     return {
-      'email.required': 'O Campo e-mail é obrigatório!',
-      'email.email': 'Você deve passar um e-mail válido.',
-      'password.required': 'O campo senha é obrigatória',
-      'username.required': 'O Campo username é obrigatório'
-    }
+      username: "required",
+      email: "required|email",
+      password: "required"
+    };
+  }
+
+  get messages() {
+    return {
+      "email.required": "o campo e-mail é obrigatório.",
+      "email.email": "o e-mail deve ser um campo válido.",
+      "password.required": "o campo password é obrigatório.",
+      "username.required": "o campo username é obrigatório."
+    };
   }
 }
 
-module.exports = Login
+module.exports = Login;
