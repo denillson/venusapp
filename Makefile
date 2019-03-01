@@ -5,6 +5,11 @@ setup: packages
 packages:
 	yarn install
 
+.PHONY: configure
+configure:
+	adonis key:generate
+	adonis migration:run
+
 .PHONY: test
 test:
 	yarn run test

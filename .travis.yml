@@ -6,6 +6,7 @@ install:
   - make setup
 before_script:
   - cp -a .env.testing .env
+  - make configure
 script:
   - make prettier
   - make test
