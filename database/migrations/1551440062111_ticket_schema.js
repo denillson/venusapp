@@ -9,7 +9,7 @@ class TicketSchema extends Schema {
       table.increments();
       table
         .string("title", 80)
-        .notNullble()
+        .notNullable()
         .unique();
       table.text("content").notNullable();
       table
