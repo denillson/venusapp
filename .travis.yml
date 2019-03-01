@@ -1,12 +1,15 @@
 language: node_js
 node_js:
-  - "11.10"
+- '11.10'
 sudo: false
 install:
-  - make setup
+- make setup
 before_script:
-  - cp -a .env.testing .env
-  - make configure
+- cp -a .env.testing .env
+- make configure
 script:
-  - make prettier
-  - make test
+- make prettier
+- make test
+notifications:
+  slack:
+    secure: pMr8sXEY9z7LOXLjX8YyphL6Ua9pXirIl/X3OWJdf9ycpv9C2h+fkBwlJtlps/Kp8e/TKfr2YlLday3We+swU0EVjGwY19Sk7b3kQLPmHN/Fhgcga22h+Tfb73o1gsR6UyNBtQc+QvrkjGYLqEIcDs7GuzhyhN1Pq6EZgf8uJP7aB/N8X8Lc3TF2630OTS0I6fjE1ZnThiYYcdX/tQMF563LImqkLg2iEfjuhBPgelUPy8jX/mhzmiCH8P83I2QTfDsiKVmfoIG0DuguCj9mlgC0RubkHxzrihDOGnSgJjISPHZfUojtAyRJG67jt0EIuPM4pud3OQZ6TB4hTcg9PAiCEY0Z35ZeGA2MozVDeJSQ4Qerco4aoqDUZbTI+LTPrc3Tu95l0ggKLRGL8nOFzmKa8TUzYdr83TAsh6YUABd4/6VI0A6eHZ0MdaO8nPXlY1wTUKwyPLvsGvgLnBsLCXuR2TfWBl+Mhw7wY/UCCCMTnSs4y8hMxKkQkGbq455Tw+3bIYBfOD1Ia+f4RbL0KGYSUh2If0kEESF8729vyi3c0uuvC8tDO86fghh2q2iUbA3e4La3/+T8+Dyk0uWfLWXCJW6grDjHRCW/Wh45xu4amwJ0vISXW/xkXZLQ0wrkbFDTEq2Ssb38gj5H+ofcZEzDDC3PM4G1fm7dkdBixfc=
