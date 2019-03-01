@@ -23,5 +23,11 @@ Route.group(() => {
   Route.resource("tickets", "TicketController")
     .middleware(new Map([[["store", "update", "destroy"], ["auth"]]]))
     .apiOnly()
-    .except(["create", "edit"]);
+    .except(["create", "edit"])
+    .validator(
+      new Map([
+        [["tickets.store"], ["ticket"]],
+        [["tickets.update"], ["ticket"]]
+      ])
+    );
 }).prefix("/api/v1");

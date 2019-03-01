@@ -11,7 +11,16 @@ class TicketController {
       .paginate(currentPage.page, 10);
   }
 
-  async store({ request, response }) {}
+  async store({ request, response, auth }) {
+    const payload = request.only(["title", "content", "status", "priority"]);
+
+    try {
+      const ticket = await Ticket.create({ user_id: auth.user.id, ...payload });
+      response.status(201).json(ticket);
+    } catch (error) {
+      response.status(500).json({ message: error });
+    }
+  }
 
   async show({ params, request, response, view }) {}
 
