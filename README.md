@@ -12,17 +12,20 @@ Após criar uma plataforma para programadores online chamada **[StatusOK](https:
 
 Então surgiu a ideia de criar o Venusapp inspirado no [Brimir](https://helpdesk-programs.com/open-source/brimir) que infelizmente está morto.
 
-## Custo
+## Contribuição
 
-O projeto está sobre a licença BSD e não cobramos para você obter uma cópia do projeto e usar na sua empresa ou em qualquer outro lugar. Contudo, toda ajuda é bem-vinda e se você puder e somente puder contribuir, estamos a disposição para aceitar a sua contribuição, seja lá:
-
-- Enviando PR (PULL REQUEST)
-- Escrevendo documentações
-- Dinheiro
-- Ou qualquer outro tipo de contribuição.
-
-Toda ajuda é bem-vinda.
+Existem várias formas de contribuir, resolvi criar uma [wiki](https://github.com/MarcusMann/venusapp/wiki/Contribuindo) falando sobre isso.
 
 ## Instalação
 
 Coming soon...
+
+## Testando a aplicação
+
+Você pode testar aplicação com um simples comando em seu terminal
+
+```bash
+make test
+```
+
+Para obter mais informações sobre testes e lint para aprovação do CI [acesse](https://github.com/MarcusMann/venusapp/wiki/Testando-e-formatando-a-aplica%C3%A7%C3%A3o)
