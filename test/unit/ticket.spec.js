@@ -50,6 +50,27 @@ test("Create a new Ticket", async ({ client }) => {
   response.assertJSONSubset(ticket.$attributes);
 });
 
+test("Update Ticket", async ({ client }) => {
+  const ticket = await Factory.model("App/Models/Ticket").create();
+  const user = await Factory.model("App/Models/User").create();
+  const ticketUpdated = {
+    title: "Hello 2",
+    content: "Hello 2 content...",
+    status: true,
+    priority: "low"
+  };
+
+  const response = await client
+    .put(`/api/v1/tickets/${ticket.id}`)
+    .header("Accept", "application/json")
+    .loginVia(user, "jwt")
+    .send(ticketUpdated)
+    .end();
+
+  response.assertStatus(200);
+  response.assertJSONSubset(ticketUpdated);
+});
+
 test("Remove Ticket", async ({ client }) => {
   const ticket = await Factory.model("App/Models/Ticket").create();
   const user = await Factory.model("App/Models/User").create();
