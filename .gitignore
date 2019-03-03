@@ -9,3 +9,6 @@ tmp
 
 # The development and Testing sqlite files
 *.sqlite
+
+# Nyc
+.nyc_output
