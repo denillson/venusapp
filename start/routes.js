@@ -16,8 +16,12 @@
 /** @type {typeof import('@adonisjs/framework/src/Route/Manager')} */
 const Route = use("Route");
 
-Route.post("/api/v1/register", "AuthController.register").validator("Register");
-Route.post("/api/v1/login", "AuthController.login").validator("Login");
+Route.post("/api/v1/register", "AuthController.register")
+  .validator("Register")
+  .as("auth.register");
+Route.post("/api/v1/login", "AuthController.login")
+  .validator("Login")
+  .as("auth.login");
 
 Route.group(() => {
   Route.resource("tickets", "TicketController")
