@@ -1,4 +1,5 @@
 [![Build Status](https://travis-ci.org/MarcusMann/venusapp.svg?branch=master)](https://travis-ci.org/MarcusMann/venusapp)
+[![Coverage Status](https://coveralls.io/repos/github/MarcusMann/venusapp/badge.svg?branch=master)](https://coveralls.io/github/MarcusMann/venusapp?branch=master)
 
 # Venus App - Help Desk
 
