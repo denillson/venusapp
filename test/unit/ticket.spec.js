@@ -24,9 +24,9 @@ test("Get All Tickets", async ({ client }) => {
 });
 
 test("Get Ticket", async ({ client }) => {
-  await Factory.model("App/Models/Ticket").create();
+  const ticket = await Factory.model("App/Models/Ticket").create();
 
-  const response = await client.get("/api/v1/tickets/4").end();
+  const response = await client.get(`/api/v1/tickets/${ticket.id}`).end();
 
   response.assertStatus(200);
   response.assertJSONSubset({ priority: "critical" });
@@ -34,7 +34,7 @@ test("Get Ticket", async ({ client }) => {
 
 test("Create a new Ticket", async ({ client }) => {
   const user = await Factory.model("App/Models/User").create();
-  const ticket = await Factory.model("App/Models/Ticket").make({ user_id: 3 });
+  const ticket = await Factory.model("App/Models/Ticket").make();
 
   const response = await client
     .post("/api/v1/tickets")
@@ -51,11 +51,11 @@ test("Create a new Ticket", async ({ client }) => {
 });
 
 test("Remove Ticket", async ({ client }) => {
-  await Factory.model("App/Models/Ticket").create();
+  const ticket = await Factory.model("App/Models/Ticket").create();
   const user = await Factory.model("App/Models/User").create();
 
   const response = await client
-    .delete("/api/v1/tickets/4")
+    .delete(`/api/v1/tickets/${ticket.id}`)
     .header("Accept", "application/json")
     .loginVia(user, "jwt")
     .end();
