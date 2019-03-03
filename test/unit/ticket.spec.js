@@ -23,6 +23,15 @@ test("Get All Tickets", async ({ client }) => {
   });
 });
 
+test("Get Ticket", async ({ client }) => {
+  await Factory.model("App/Models/Ticket").create();
+
+  const response = await client.get("/api/v1/tickets/4").end();
+
+  response.assertStatus(200);
+  response.assertJSONSubset({ priority: "critical" });
+});
+
 test("Create a new Ticket", async ({ client }) => {
   const user = await Factory.model("App/Models/User").create();
   const ticket = await Factory.model("App/Models/Ticket").make({ user_id: 3 });
@@ -39,4 +48,18 @@ test("Create a new Ticket", async ({ client }) => {
 
   response.assertStatus(201);
   response.assertJSONSubset(ticket.$attributes);
+});
+
+test("Remove Ticket", async ({ client }) => {
+  await Factory.model("App/Models/Ticket").create();
+  const user = await Factory.model("App/Models/User").create();
+
+  const response = await client
+    .delete("/api/v1/tickets/4")
+    .header("Accept", "application/json")
+    .loginVia(user, "jwt")
+    .end();
+
+  response.assertStatus(200);
+  response.assertJSONSubset({ priority: "critical" });
 });
