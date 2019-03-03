@@ -1,12 +1,15 @@
 "use strict";
 
+const Mail = use("Mail");
 const { test, trait } = use("Test/Suite")("Register");
 const User = use("App/Models/User");
 
 trait("Test/ApiClient");
 trait("DatabaseTransactions");
 
-test("Register Account", async ({ client }) => {
+test("Register User", async ({ assert, client }) => {
+  Mail.fake();
+
   const payload = {
     username: "example",
     email: "example@example.com",
@@ -15,13 +18,29 @@ test("Register Account", async ({ client }) => {
 
   const response = await client
     .post("/api/v1/register")
+    .header("Accept", "application/json")
     .send(payload)
     .end();
 
+  // test http response...
   delete payload.password;
 
   response.assertStatus(200);
   response.assertJSONSubset(payload);
+
+  // test email response ...
+  const recentEmail = await Mail.pullRecent();
+
+  assert.equal(recentEmail.message.subject, "Seja bem-vindo example");
+  assert.equal(
+    recentEmail.message.html,
+    "<h2> Olá example </h2>\n\n<p> Este é um e-mail de boas vindas!</p>\n\n<p>\n  Agradecemos por você ter feito o cadastrado em nosso sistema, \n  agora você poderá ter acesso a nossa comunidade.\n</p>\n\n<p>\n  <em>Equipe <strong>Venus </strong>,\n  <br />\n  Agradece\n  </em>\n</>\n"
+  );
+  assert.equal(recentEmail.message.to[0].name, "example");
+  assert.equal(recentEmail.message.to[0].address, "example@example.com");
+  assert.equal(recentEmail.message.from.name, "Venus");
+
+  Mail.restore();
 });
 
 test("Register with invalid e-mail", async ({ client }) => {
