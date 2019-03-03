@@ -15,7 +15,7 @@ class TicketController {
   }
 
   async store({ request, response, auth }) {
-    const payload = request.only(["title", "content", "status", "priority"]);
+    const payload = request.only(["title", "content", "priority"]);
 
     try {
       const ticket = await Ticket.create({ user_id: auth.user.id, ...payload });

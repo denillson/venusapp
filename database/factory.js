@@ -26,7 +26,6 @@ Factory.blueprint("App/Models/Ticket", faker => {
   return {
     title: faker.sentence({ words: 3 }),
     content: faker.paragraph({ sentences: 1 }),
-    status: faker.bool(),
     priority: "critical",
     user_id: async () => {
       return (await Factory.model("App/Models/User").create()).id;
