@@ -10,23 +10,19 @@ class NotFoundError extends LogicalException {
 
 class ForbbidenError extends LogicalException {
   handle(error, { response }) {
-    response
-      .status(403)
-      .json({
-        message: "Você não tem permissão suficiente para continuar aqui!",
-        status: 403
-      });
+    response.status(403).json({
+      message: "Você não tem permissão suficiente para continuar aqui!",
+      status: 403
+    });
   }
 }
 
 class UnauthorizedError extends LogicalException {
   handle(error, { response }) {
-    response
-      .status(401)
-      .json({
-        message: "Você não possui autorização para continuar aqui!",
-        status: 401
-      });
+    response.status(401).json({
+      message: "Você não possui autorização para continuar aqui!",
+      status: 401
+    });
   }
 }
 
